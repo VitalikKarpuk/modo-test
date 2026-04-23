@@ -1,0 +1,87 @@
+import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import { SITE } from "@/app/lib/content";
+import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: `${SITE.name} — The ground-truth data layer for institutional finance`,
+    template: `%s · ${SITE.name}`,
+  },
+  description: SITE.description,
+  applicationName: SITE.name,
+  keywords: [
+    "Canton",
+    "blockchain explorer",
+    "Daml",
+    "institutional finance",
+    "private explorer",
+    "Web3 infrastructure",
+    "agentic API",
+    "DvP settlement",
+  ],
+  authors: [{ name: SITE.name }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: `${SITE.name} — The ground-truth data layer for institutional finance`,
+    description: SITE.description,
+    url: SITE.url,
+    siteName: SITE.name,
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE.name} — The ground-truth data layer`,
+    description: SITE.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  icons: {
+    icon: "/logoIcon.svg",
+    shortcut: "/favicon.ico",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#020309",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+    >
+      <body
+        className="min-h-full flex flex-col bg-bg text-fg font-sans"
+        suppressHydrationWarning
+      >
+        {children}
+      </body>
+    </html>
+  );
+}

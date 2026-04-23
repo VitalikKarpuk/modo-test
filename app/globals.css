@@ -1,0 +1,362 @@
+@import "tailwindcss";
+
+@custom-variant light (&:where(.light, .light *));
+
+/* =========================================================
+   Palette — fixed brand scales
+   ========================================================= */
+:root {
+  /* Coral (primary / accent) */
+  --coral-50:  #FEF1EA;
+  --coral-100: #FDE0D0;
+  --coral-200: #FBC0A1;
+  --coral-300: #F9A17B;
+  --coral-400: #F78E64;
+  --coral-500: #F48656;
+  --coral-600: #DC6A3A;
+  --coral-700: #B2522C;
+  --coral-800: #7F3B20;
+  --coral-900: #4D2314;
+
+  /* Ink (cool-black neutrals) */
+  --ink-0:   #FFFFFF;
+  --ink-50:  #F7F8F8;
+  --ink-100: #EEEFEF;
+  --ink-200: #DADDDE;
+  --ink-300: #B4B8BA;
+  --ink-400: #858B8E;
+  --ink-500: #5A6063;
+  --ink-600: #3D4345;
+  --ink-700: #2A2F31;
+  --ink-800: #1B2021;
+  --ink-900: #0A0D12;
+  --ink-950: #020309;
+
+  /* Semantic */
+  --success: #2BB673;
+  --warning: #E8B14A;
+  --danger:  #E5484D;
+  --info:    #4A90E2;
+
+  /* Theme tokens — DARK (default) */
+  --bg:          var(--ink-950);
+  --surface:     #0B0F13;
+  --surface-2:   #13181C;
+  --line:        #1F2426;
+  --line-strong: #2E3537;
+  --fg:          var(--ink-50);
+  --fg-muted:    var(--ink-300);
+  --fg-dim:      var(--ink-500);
+  --accent:      var(--coral-500);
+  --accent-hover:var(--coral-300);
+  --accent-glow: rgba(244, 134, 86, 0.14);
+
+  color-scheme: dark;
+}
+
+.light {
+  --bg:          #FFFFFF;
+  --surface:     var(--ink-50);
+  --surface-2:   #FFFFFF;
+  --line:        var(--ink-100);
+  --line-strong: var(--ink-200);
+  --fg:          var(--ink-800);
+  --fg-muted:    var(--ink-500);
+  --fg-dim:      var(--ink-400);
+  --accent:      var(--coral-500);
+  --accent-hover:var(--coral-600);
+  --accent-glow: rgba(244, 134, 86, 0.10);
+
+  color-scheme: light;
+}
+
+/* =========================================================
+   Tailwind v4 theme mapping
+   ========================================================= */
+@theme {
+  --font-sans:    var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono:    var(--font-jetbrains), "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Coral */
+  --color-coral-50:  var(--coral-50);
+  --color-coral-100: var(--coral-100);
+  --color-coral-200: var(--coral-200);
+  --color-coral-300: var(--coral-300);
+  --color-coral-400: var(--coral-400);
+  --color-coral-500: var(--coral-500);
+  --color-coral-600: var(--coral-600);
+  --color-coral-700: var(--coral-700);
+  --color-coral-800: var(--coral-800);
+  --color-coral-900: var(--coral-900);
+
+  /* Ink */
+  --color-ink-0:   var(--ink-0);
+  --color-ink-50:  var(--ink-50);
+  --color-ink-100: var(--ink-100);
+  --color-ink-200: var(--ink-200);
+  --color-ink-300: var(--ink-300);
+  --color-ink-400: var(--ink-400);
+  --color-ink-500: var(--ink-500);
+  --color-ink-600: var(--ink-600);
+  --color-ink-700: var(--ink-700);
+  --color-ink-800: var(--ink-800);
+  --color-ink-900: var(--ink-900);
+  --color-ink-950: var(--ink-950);
+
+  /* Semantic constants */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger:  var(--danger);
+  --color-info:    var(--info);
+
+  /* Theme-aware */
+  --color-bg:           var(--bg);
+  --color-surface:      var(--surface);
+  --color-surface-2:    var(--surface-2);
+  --color-line:         var(--line);
+  --color-line-strong:  var(--line-strong);
+  --color-fg:           var(--fg);
+  --color-fg-muted:     var(--fg-muted);
+  --color-fg-dim:       var(--fg-dim);
+  --color-accent:       var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-glow:  var(--accent-glow);
+
+  /* Type scale (1.25 modular) */
+  --text-xs:    0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm:    0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base:  1rem;
+  --text-base--line-height: 1.55;
+  --text-lg:    1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl:    1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl:   1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl:   2rem;
+  --text-3xl--line-height: 2.5rem;
+  --text-4xl:   2.5rem;
+  --text-4xl--line-height: 1.1;
+  --text-5xl:   3.5rem;
+  --text-5xl--line-height: 1.02;
+  --text-6xl:   4.5rem;
+  --text-6xl--line-height: 0.98;
+  --text-7xl:   6rem;
+  --text-7xl--line-height: 0.95;
+
+  /* Tracking */
+  --tracking-tightest: -0.04em;
+  --tracking-tighter:  -0.025em;
+  --tracking-tight:    -0.015em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.02em;
+  --tracking-wider:    0.08em;
+  --tracking-widest:   0.18em;
+
+  /* Radii */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+::selection {
+  background: var(--accent);
+  color: var(--ink-950);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* Tabular numerals for data */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   Animations
+   ========================================================= */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.35; transform: scale(0.9); }
+}
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.anim-fade-up { animation: fade-up 900ms cubic-bezier(0.21, 0.61, 0.35, 1) both; }
+.anim-fade-in { animation: fade-in 1200ms ease-out both; }
+.anim-line-grow {
+  transform-origin: left;
+  animation: line-grow 1000ms cubic-bezier(0.21, 0.61, 0.35, 1) 600ms both;
+}
+.anim-pulse { animation: pulse-dot 2.4s ease-in-out infinite; }
+.anim-glow  { animation: glow-breathe 6s ease-in-out infinite; }
+
+.marquee-track {
+  animation: marquee-x 40s linear infinite;
+}
+
+/* Scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 800ms cubic-bezier(0.21, 0.61, 0.35, 1),
+    transform 800ms cubic-bezier(0.21, 0.61, 0.35, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* =========================================================
+   Utility overlays
+   ========================================================= */
+.noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96 0 0 0 0 0.96 0 0 0 0 0.96 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 120% 80% at 50% 30%, black 20%, transparent 90%);
+}
+
+.accent-underline {
+  position: relative;
+}
+.accent-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.05em;
+  height: 0.08em;
+  background: var(--accent);
+  transform-origin: left;
+}
+
+/* Frost nav */
+.frost {
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: saturate(140%) blur(16px);
+  -webkit-backdrop-filter: saturate(140%) blur(16px);
+}
+
+/* =========================================================
+   Scroll-driven parallax for Showcase screenshots
+   Native CSS scroll-timeline; falls back to no-op where
+   unsupported (Firefox at time of writing).
+   ========================================================= */
+@keyframes plate-drift {
+  from { transform: translateY(3%); }
+  to   { transform: translateY(-3%); }
+}
+.plate-parallax {
+  animation: plate-drift linear both;
+  animation-timeline: view();
+  animation-range: cover 0% cover 100%;
+  will-change: transform;
+}
+@supports not (animation-timeline: view()) {
+  .plate-parallax { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .plate-parallax { animation: none; }
+}
+
+/* =========================================================
+   Partner logos — monochrome treatment
+   Normalizes brand colors to white (dark) / black (light),
+   coral drop-shadow on hover.
+   ========================================================= */
+.partner-logo {
+  filter: brightness(0) invert(1) opacity(0.55);
+  transition: filter 380ms cubic-bezier(0.21, 0.61, 0.35, 1),
+    transform 380ms cubic-bezier(0.21, 0.61, 0.35, 1);
+  will-change: filter, transform;
+}
+.partner-slot:hover .partner-logo,
+.partner-slot:focus-visible .partner-logo {
+  filter: brightness(0) invert(1) opacity(1)
+    drop-shadow(0 0 12px rgba(244, 134, 86, 0.55));
+  transform: translateY(-1px);
+}
+.light .partner-logo {
+  filter: brightness(0) opacity(0.55);
+}
+.light .partner-slot:hover .partner-logo,
+.light .partner-slot:focus-visible .partner-logo {
+  filter: brightness(0) opacity(1)
+    drop-shadow(0 0 12px rgba(244, 134, 86, 0.45));
+  transform: translateY(-1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .partner-slot:hover .partner-logo,
+  .partner-slot:focus-visible .partner-logo {
+    transform: none;
+  }
+}
