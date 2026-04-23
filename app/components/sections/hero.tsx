@@ -1,9 +1,11 @@
 import { Counter } from "@/app/components/counter";
+import { HeroVideo } from "@/app/components/hero-video";
 import { ArrowRight, ArrowTopRight } from "@/app/components/icons";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
+      <HeroVideo />
       <div className="grid-bg" />
       <div className="noise" />
 
