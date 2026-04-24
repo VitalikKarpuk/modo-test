@@ -213,6 +213,8 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     title: "Resources",
     items: [
       { label: "Docs", href: "https://docs.modo.link/" },
+      { label: "Demo 2", href: "/demo2" },
+      { label: "Demo 3", href: "/demo3" },
       { label: "Changelog", href: "#" },
       { label: "Status", href: "#" },
     ],

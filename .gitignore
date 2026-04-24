@@ -42,3 +42,15 @@ next-env.d.ts
 # IDE
 .idea/
 .vscode/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+
+# Caches
+.turbo/
+.cache/
+
+# Claude Code / AI tooling (local project data, not for the repo)
+.claude/

@@ -44,7 +44,7 @@ export function Products() {
   );
 }
 
-function ProductCard({ product }: { product: Product }) {
+export function ProductCard({ product }: { product: Product }) {
   const Icon = PRODUCT_ICONS[product.iconKey];
   const isExternal = product.href.startsWith("http");
   return (

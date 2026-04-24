@@ -90,16 +90,14 @@ export function Hero() {
             animationDelay: "240ms",
           }}
         >
-          The ground-truth
+          Ultimate Blockchain
           <br />
-          data layer for{" "}
           <span
             className="font-extralight tracking-tight text-accent"
             style={{ letterSpacing: "-0.03em" }}
           >
-            institutional
-          </span>{" "}
-          finance.
+            Data Hub
+          </span>
         </h1>
 
         {/* Sub */}
@@ -107,9 +105,8 @@ export function Hero() {
           className="anim-fade-up mt-10 max-w-2xl text-lg md:text-xl text-fg-muted leading-relaxed"
           style={{ animationDelay: "380ms" }}
         >
-          Public and private explorers. Advanced indexing, labeling and
-          monitoring. Real-time APIs. Delivered as one Canton-native platform —
-          so institutions never operate on data they can&rsquo;t verify.
+          End-to-end Web3 data platform to get on-chain data, gain in-depth
+          network intelligence, and build powerful apps.
         </p>
 
         {/* CTAs */}

@@ -16,6 +16,11 @@
       "sourceType": "well-known",
       "computedHash": "7b31199cce0f9a1b17acdf880469b0f9ddf9eb63577b1fde567def461d888287"
     },
+    "remotion-best-practices": {
+      "source": "smithery.ai",
+      "sourceType": "well-known",
+      "computedHash": "3afdcf55f7ace719b319f34a2ca8ffbd4b41abba24eb69251ad5168498c05311"
+    },
     "rendering-animate-svg": {
       "source": "smithery.ai",
       "sourceType": "well-known",
