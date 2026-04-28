@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "@/app/components/reveal";
 import { Section } from "@/app/components/section";
 import { SpotlightCard } from "@/app/components/spotlight-card";
@@ -96,14 +97,29 @@ function FlagshipCard({ e }: { e: Explorer }) {
       rel="noreferrer"
       className={`${CARD_BASE} p-6 md:p-8`}
     >
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 0% 100%, rgba(244,134,86,0.10), transparent 60%)",
-        }}
-      />
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
+        <Image
+          src="/modoCC2.png"
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(115deg, rgba(2,3,9,0.94) 0%, rgba(2,3,9,0.86) 40%, rgba(2,3,9,0.62) 75%, rgba(2,3,9,0.42) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 0% 100%, rgba(244,134,86,0.10), transparent 60%)",
+          }}
+        />
+      </div>
 
       <div className="relative flex items-start justify-between">
         <div className="flex items-center gap-2">

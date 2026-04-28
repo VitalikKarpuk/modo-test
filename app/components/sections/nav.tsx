@@ -4,7 +4,7 @@ import Link from "next/link";
 const ANCHORS = [
   { href: "/#products", label: "Products" },
   { href: "/#explorers", label: "Explorers" },
-  { href: "/#enterprise", label: "Enterprise" },
+  { href: "/#agentic", label: "Agentic" },
 ] as const;
 
 export function Nav() {

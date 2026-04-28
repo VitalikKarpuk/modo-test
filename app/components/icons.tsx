@@ -1,6 +1,6 @@
 /**
  * Inline SVG icons. All use `currentColor` so they inherit theming.
- * Grouped by usage: arrows, product marks, enterprise-bento marks, utility.
+ * Grouped by usage: arrows, product marks, agentic-bento marks, utility.
  */
 
 import type { ProductIconKey } from "@/app/lib/content";
