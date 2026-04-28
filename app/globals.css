@@ -377,28 +377,6 @@ body {
 }
 
 /* =========================================================
-   Scroll-driven parallax for Showcase screenshots
-   Native CSS scroll-timeline; falls back to no-op where
-   unsupported (Firefox at time of writing).
-   ========================================================= */
-@keyframes plate-drift {
-  from { transform: translateY(3%); }
-  to   { transform: translateY(-3%); }
-}
-.plate-parallax {
-  animation: plate-drift linear both;
-  animation-timeline: view();
-  animation-range: cover 0% cover 100%;
-  will-change: transform;
-}
-@supports not (animation-timeline: view()) {
-  .plate-parallax { animation: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .plate-parallax { animation: none; }
-}
-
-/* =========================================================
    Partner logos — monochrome treatment
    Normalizes brand colors to white (dark) / black (light),
    coral drop-shadow on hover.

@@ -1,13 +1,12 @@
 import { Reveal } from "@/app/components/reveal";
-import { Counter } from "@/app/components/counter";
 import { Section } from "@/app/components/section";
 import { SpotlightCard } from "@/app/components/spotlight-card";
 import {
   IconAgentic,
   IconDvP,
+  IconMulticall,
   IconRecurring,
 } from "@/app/components/icons";
-import { TECH_TAGS } from "@/app/lib/content";
 
 export function EnterpriseStack() {
   return (
@@ -25,21 +24,22 @@ export function EnterpriseStack() {
           </h2>
           <p className="text-lg text-fg-muted leading-relaxed md:mt-4">
             Every institutional-grade primitive — signed agents, atomic
-            settlement, party-verified data, recurring payments — ready out of
-            the box on your validator.
+            settlement, party-scoped data, recurring payments — on Modo's
+            shared infrastructure layer.
           </p>
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 md:auto-rows-[220px]">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 md:auto-rows-[minmax(220px,auto)]">
         <Reveal delay={0} className="md:col-span-1 md:row-span-1">
           <BentoShell>
             <BentoHeader num="01" icon={<IconAgentic />} />
             <BentoTitle>Agentic execution</BentoTitle>
             <BentoDesc>
-              Ed25519-signed agent calls, async orchestration, programmable
-              external accounts.
+              Ed25519-signed calls, prepare-sign-execute lifecycle, end-to-end
+              response signing.
             </BentoDesc>
+            <LifecycleStrip steps={["Prepare", "Sign", "Execute"]} />
           </BentoShell>
         </Reveal>
 
@@ -51,6 +51,10 @@ export function EnterpriseStack() {
               Atomic delivery-versus-payment with amulet allocation and fee
               management.
             </BentoDesc>
+            <FooterStrip
+              left="5-step flow"
+              right={<span className="text-accent">atomic</span>}
+            />
           </BentoShell>
         </Reveal>
 
@@ -59,38 +63,40 @@ export function EnterpriseStack() {
         </Reveal>
 
         <Reveal delay={180} className="md:col-span-1 md:row-span-1">
-          <BentoShell variant="quote">
-            <BentoHeader num="03" />
-            <p className="relative font-serif italic text-lg md:text-xl leading-snug text-fg">
-              What&rsquo;s{" "}
-              <span className="text-accent">invisible publicly</span> becomes
-              observable privately.
-            </p>
-            <span className="relative mt-auto font-mono text-[11px] uppercase tracking-widest text-fg-dim">
-              Party-verified data
-            </span>
+          <BentoShell>
+            <BentoHeader num="04" icon={<IconMulticall />} />
+            <BentoTitle>Multi-call batching</BentoTitle>
+            <BentoDesc>
+              All sub-operations succeed or the entire batch is rolled back.
+              Bundle transfers, splits, allocations and CIP-56 ops atomically.
+            </BentoDesc>
+            <OpsStrip ops={["transfer", "split", "allocate", "cip-56"]} />
           </BentoShell>
         </Reveal>
 
         <Reveal delay={240} className="md:col-span-1 md:row-span-1">
           <BentoShell>
-            <BentoHeader num="04" icon={<IconRecurring />} />
+            <BentoHeader num="05" icon={<IconRecurring />} />
             <BentoTitle>Recurring payments</BentoTitle>
             <BentoDesc>
-              Prepaid and pay-as-you-go subscriptions. Batch transfers,
-              pre-approvals.
+              Prepaid and pay-as-you-go subscriptions. Pre-approvals settle
+              automatically without manual acceptance.
             </BentoDesc>
+            <ModesStrip
+              left="Prepaid"
+              right="Pay-as-you-go"
+            />
           </BentoShell>
         </Reveal>
 
         <Reveal delay={300} className="md:col-span-2 md:row-span-1">
           <BentoShell>
-            <BentoHeader num="05" />
+            <BentoHeader num="06" />
             <div className="relative flex flex-col md:flex-row md:items-end gap-6 md:gap-8 flex-1">
               <div className="flex-1 flex flex-col gap-3">
                 <BentoTitle>Historic index</BentoTitle>
                 <BentoDesc>
-                  Block-level retention. Query any state at any offset. Full
+                  Ledger-level retention. Query any state at any offset. Full
                   REST + streaming from any ledger offset.
                 </BentoDesc>
               </div>
@@ -101,63 +107,46 @@ export function EnterpriseStack() {
 
         <Reveal delay={360} className="md:col-span-2 md:row-span-1">
           <BentoShell>
-            <BentoHeader num="06" />
+            <BentoHeader num="07" />
             <div className="relative flex flex-col md:flex-row md:items-end gap-6 md:gap-8 flex-1">
               <div className="flex-1 flex flex-col gap-3">
                 <BentoTitle>Portfolio &amp; transfers</BentoTitle>
                 <BentoDesc>
-                  Normalized multi-chain holdings, signed audit exports,
-                  SOC&nbsp;2-ready infrastructure.
+                  Parties, accounts and transfer history in one structured
+                  data view — normalized schema, paginated REST.
                 </BentoDesc>
               </div>
-              <div className="flex items-baseline gap-2">
-                <span className="font-mono tabular text-5xl md:text-6xl font-medium text-accent leading-none">
-                  11
-                </span>
-                <span className="font-mono text-[11px] uppercase tracking-widest text-fg-dim">
-                  networks
-                  <br />
-                  tracked
-                </span>
+              <div className="flex flex-wrap gap-1.5 md:max-w-[220px] md:justify-end">
+                {[
+                  "Multi-party",
+                  "Structured schema",
+                  "Paginated",
+                ].map((c) => (
+                  <span
+                    key={c}
+                    className="px-2.5 py-1 rounded-md border border-line bg-bg/40 font-mono text-[10.5px] uppercase tracking-widest text-fg-muted"
+                  >
+                    {c}
+                  </span>
+                ))}
               </div>
             </div>
           </BentoShell>
         </Reveal>
       </div>
 
-      <Reveal>
-        <ul className="mt-12 md:mt-16 flex flex-wrap gap-2 md:gap-3 text-xs font-mono">
-          {TECH_TAGS.map((tag) => (
-            <li
-              key={tag}
-              className="px-3 py-1.5 rounded-full border border-line text-fg-muted tracking-wider"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
-      </Reveal>
     </Section>
   );
 }
 
 /* -------- Bento primitives (kept local; not reused elsewhere) -------- */
 
-function BentoShell({
-  children,
-  variant = "default",
-}: {
-  children: React.ReactNode;
-  variant?: "default" | "quote";
-}) {
-  const base =
-    "h-full flex flex-col gap-4 p-6 md:p-7 rounded-2xl border border-line transition-colors overflow-hidden";
-  const bg =
-    variant === "quote"
-      ? "bg-surface-2 hover:border-line-strong"
-      : "bg-surface hover:border-line-strong";
+function BentoShell({ children }: { children: React.ReactNode }) {
   return (
-    <SpotlightCard radius={360} className={`${base} ${bg}`}>
+    <SpotlightCard
+      radius={360}
+      className="h-full flex flex-col gap-4 p-6 md:p-7 rounded-2xl border border-line bg-surface hover:border-line-strong transition-colors overflow-hidden"
+    >
       {children}
     </SpotlightCard>
   );
@@ -201,6 +190,87 @@ function BentoDesc({ children }: { children: React.ReactNode }) {
     <p className="relative text-sm text-fg-muted leading-relaxed">
       {children}
     </p>
+  );
+}
+
+/* -------- Per-card footer micro-visuals (bento variety) -------- */
+
+function FooterShell({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative mt-auto pt-4 border-t border-line/60">
+      {children}
+    </div>
+  );
+}
+
+function LifecycleStrip({ steps }: { steps: readonly string[] }) {
+  return (
+    <FooterShell>
+      <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-fg-dim">
+        {steps.map((s, i) => (
+          <span key={s} className="flex items-center gap-2">
+            {i > 0 && <span className="text-accent">→</span>}
+            <span>{s}</span>
+          </span>
+        ))}
+      </div>
+    </FooterShell>
+  );
+}
+
+function FooterStrip({
+  left,
+  right,
+}: {
+  left: React.ReactNode;
+  right: React.ReactNode;
+}) {
+  return (
+    <FooterShell>
+      <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-fg-dim">
+        <span>{left}</span>
+        <span>{right}</span>
+      </div>
+    </FooterShell>
+  );
+}
+
+function OpsStrip({ ops }: { ops: readonly string[] }) {
+  return (
+    <FooterShell>
+      <div className="flex flex-wrap gap-1">
+        {ops.map((op) => (
+          <span
+            key={op}
+            className="px-1.5 py-0.5 rounded font-mono text-[9.5px] uppercase tracking-widest bg-bg/60 border border-line/60 text-fg-muted"
+          >
+            {op}
+          </span>
+        ))}
+      </div>
+    </FooterShell>
+  );
+}
+
+function ModesStrip({ left, right }: { left: string; right: string }) {
+  return (
+    <FooterShell>
+      <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-fg-dim">
+        <span className="flex items-center gap-1.5">
+          <span className="h-2 w-3 rounded-sm bg-accent" />
+          {left}
+        </span>
+        <span className="text-fg-dim/40">·</span>
+        <span className="flex items-center gap-1.5">
+          <span className="flex gap-[2px]">
+            <span className="h-2 w-[3px] rounded-sm bg-accent/60" />
+            <span className="h-2 w-[3px] rounded-sm bg-accent/60" />
+            <span className="h-2 w-[3px] rounded-sm bg-accent/60" />
+          </span>
+          {right}
+        </span>
+      </div>
+    </FooterShell>
   );
 }
 
@@ -275,41 +345,29 @@ function FeaturedLiveIndex() {
       </div>
 
       <div className="relative mt-auto grid grid-cols-2 gap-x-6 gap-y-4 pt-5 border-t border-line">
-        <BentoStat
-          label="Contracts"
-          value={<Counter to={4.8e6} format="compact" />}
-        />
-        <BentoStat
-          label="Parties"
-          value={<Counter to={128_430} format="int" />}
-        />
-        <BentoStat
-          label="Tokens"
-          value={<Counter to={3_420} format="int" />}
-        />
-        <BentoStat
-          label="Transfers / 24h"
-          value={<Counter to={892_104} format="int" />}
-        />
+        <BentoIndex primary="Contracts" secondary="+ events · updates" />
+        <BentoIndex primary="Parties" secondary="+ accounts · types" />
+        <BentoIndex primary="Tokens" secondary="+ market rates" />
+        <BentoIndex primary="Validators" secondary="+ governance" />
       </div>
     </SpotlightCard>
   );
 }
 
-function BentoStat({
-  label,
-  value,
+function BentoIndex({
+  primary,
+  secondary,
 }: {
-  label: string;
-  value: React.ReactNode;
+  primary: string;
+  secondary: string;
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <span className="font-mono text-2xl md:text-3xl font-medium text-fg tabular leading-none">
-        {value}
+      <span className="font-display text-xl md:text-2xl font-medium text-fg leading-tight">
+        {primary}
       </span>
       <span className="font-mono text-[10px] uppercase tracking-widest text-fg-dim">
-        {label}
+        {secondary}
       </span>
     </div>
   );

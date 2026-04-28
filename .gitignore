@@ -54,3 +54,4 @@ Thumbs.db
 
 # Claude Code / AI tooling (local project data, not for the repo)
 .claude/
+/research

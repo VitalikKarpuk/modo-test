@@ -35,7 +35,6 @@ export type ProductIconKey =
   | "overlap"
   | "vault"
   | "grid"
-  | "wallet"
   | "ports";
 
 export type Product = {
@@ -52,12 +51,11 @@ export const PRODUCTS: Product[] = [
   {
     idx: "01",
     title: "Public Explorer",
-    tagline:
-      "Canton-native explorer for contracts, parties, tokens and validators.",
+    tagline: "Stay on top of on-chain activity in real time.",
     bullets: [
-      "Aggregated stats across subnets",
-      "Historical data retention",
-      "Free for anyone",
+      "Parties, tokens, validators, governance",
+      "Unified search across the network",
+      "Free and open to anyone",
     ],
     href: "https://cc.modo.link/mainnet/home",
     iconKey: "overlap",
@@ -67,11 +65,11 @@ export const PRODUCTS: Product[] = [
     idx: "02",
     title: "Private Explorer",
     tagline:
-      "Personalized workspace on your validator. Private contracts, tokens, transfers — labelled.",
+      "A private workspace to organize your activity and access richer data.",
     bullets: [
-      "Scoped to your party",
-      "Advanced labeling & compliance",
-      "Switch public ↔ private view",
+      "Smart labeling and custom filters",
+      "Multi-party, multi-account workspace",
+      "Apps & rewards tracking",
     ],
     href: "https://private-demo.modo.link/",
     iconKey: "vault",
@@ -79,119 +77,114 @@ export const PRODUCTS: Product[] = [
   {
     idx: "03",
     title: "Super-App",
-    tagline:
-      "Unified login across every Modo surface. One identity, every tool.",
+    tagline: "One unified interface for every Modo product.",
     bullets: [
-      "Single sign-on",
-      "Portfolio & transfers",
-      "Cross-product workflows",
+      "Cross-product navigation",
+      "Subscription management",
+      "Developer dashboard",
     ],
     href: "https://app.modo.link/",
     iconKey: "grid",
   },
   {
     idx: "04",
-    title: "Wallet",
-    tagline: "Custody with DvP settlement and signed audit trails.",
-    bullets: [
-      "Delivery-versus-payment",
-      "Recurring payments",
-      "Signed export logs",
-    ],
-    href: "#",
-    iconKey: "wallet",
-  },
-  {
-    idx: "05",
     title: "Modo API",
-    tagline:
-      "Historic, real-time and agentic endpoints on one normalized schema.",
+    tagline: "Structured access to blockchain data — and to action.",
     bullets: [
-      "gRPC · REST · WebSocket",
+      "Historic · Transfer · Portfolio · Agentic",
+      "gRPC + REST endpoints",
       "Ed25519-signed agent calls",
-      "Atomic batch & bridge ops",
     ],
     href: "https://docs.modo.link/",
     iconKey: "ports",
   },
 ];
 
-export type Shot = {
-  num: string;
+export type Explorer = {
+  slug: string;
   name: string;
-  italic: string;
-  rest: string;
-  url: string;
+  network: string;
+  role: string;
+  access: "Public" | "Private";
+  host: string;
   href: string;
-  file: string;
-  desc: string;
-  align: "right" | "left";
-  badge?: "LIVE" | "PRIVATE";
+  native?: boolean;
 };
 
-export const SHOTS: Shot[] = [
+export const EXPLORERS: Explorer[] = [
   {
-    num: "01",
-    name: "Public Explorer",
-    italic: "Explore",
-    rest: "what's public.",
-    url: "cc.modo.link/mainnet/home",
+    slug: "modo-cc-public",
+    name: "Modo CC",
+    network: "Canton Network",
+    role: "Public Canton explorer",
+    access: "Public",
+    host: "cc.modo.link/mainnet",
     href: "https://cc.modo.link/mainnet/home",
-    file: "/screenshots/public-explorer.png",
-    desc: "Aggregate stats, validators, tokens and parties across Canton — live, free, and open to anyone.",
-    align: "right",
-    badge: "LIVE",
+    native: true,
   },
   {
-    num: "02",
-    name: "Private Explorer",
-    italic: "See",
-    rest: "what others can't.",
-    url: "private-demo.modo.link",
+    slug: "modo-cc-private",
+    name: "Modo CC Private",
+    network: "Canton Network",
+    role: "Private Canton workspace",
+    access: "Private",
+    host: "private-demo.modo.link",
     href: "https://private-demo.modo.link/",
-    file: "/screenshots/private-explorer.png",
-    desc: "Your party's full ledger — every contract, event and offset only visible inside your node. Labelled, audit-ready, yours alone.",
-    align: "left",
-    badge: "PRIVATE",
   },
   {
-    num: "03",
-    name: "Super-App",
-    italic: "Operate",
-    rest: "from one surface.",
-    url: "app.modo.link",
-    href: "https://app.modo.link/",
-    file: "/screenshots/super-app.png",
-    desc: "One identity across every Modo surface. Portfolio, subscriptions, agentic API, logs — all one click away.",
-    align: "right",
-  },
-];
-
-export type WhyPoint = { title: string; body: string };
-
-export const WHY_POINTS: WhyPoint[] = [
-  {
-    title: "Canton-native",
-    body: "Not a generic indexer adapted. Subnet-aware architecture, mirrored Daml semantics, public + private in one stack.",
+    slug: "suiscan",
+    name: "Suiscan",
+    network: "Sui",
+    role: "High-performance blockchain",
+    access: "Public",
+    host: "suiscan.xyz",
+    href: "https://suiscan.xyz/",
   },
   {
-    title: "Private-first differentiator",
-    body: "What's invisible publicly becomes observable privately. Labels, compliance, internal monitoring — unavailable anywhere else.",
+    slug: "walruscan",
+    name: "Walruscan",
+    network: "Walrus",
+    role: "DA + Storage on Sui",
+    access: "Public",
+    host: "walruscan.com",
+    href: "https://walruscan.com/",
   },
   {
-    title: "Unified, not fragmented",
-    body: "One ledger, five products. Integrate once, migrate your existing explorers onto Modo, ship institutional-grade from day one.",
+    slug: "ikascan",
+    name: "Ikascan",
+    network: "Ika",
+    role: "Multichain control layer",
+    access: "Public",
+    host: "ikascan.io/mainnet",
+    href: "https://ikascan.io/mainnet/home",
   },
-];
-
-export const TECH_TAGS = [
-  "99.99% uptime",
-  "Party-scoped auth",
-  "gRPC · REST · WS",
-  "CIP-56 tokens",
-  "Cross-network bridge",
-  "EU hosting",
-  "SOC 2 ready",
+  {
+    slug: "iotascan",
+    name: "Iotascan",
+    network: "IOTA",
+    role: "Decentralized blockchain infrastructure",
+    access: "Public",
+    host: "iotascan.com",
+    href: "https://iotascan.com/",
+  },
+  {
+    slug: "minascan",
+    name: "Minascan",
+    network: "Mina",
+    role: "Lightweight succinct blockchain",
+    access: "Public",
+    host: "minascan.io",
+    href: "https://minascan.io/",
+  },
+  {
+    slug: "zekoscan",
+    name: "Zekoscan",
+    network: "Zeko",
+    role: "L2 for Mina's zkApps",
+    access: "Public",
+    host: "zekoscan.io",
+    href: "https://zekoscan.io/",
+  },
 ];
 
 export type FooterColumn = {
@@ -210,29 +203,22 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     ],
   },
   {
-    title: "Resources",
+    title: "Explorers",
     items: [
-      { label: "Docs", href: "https://docs.modo.link/" },
-      { label: "Demo 2", href: "/demo2" },
-      { label: "Demo 3", href: "/demo3" },
-      { label: "Changelog", href: "#" },
-      { label: "Status", href: "#" },
+      { label: "Modo CC", href: "https://cc.modo.link/mainnet/home" },
+      { label: "Suiscan", href: "https://suiscan.xyz/" },
+      { label: "Walruscan", href: "https://walruscan.com/" },
+      { label: "Ikascan", href: "https://ikascan.io/mainnet/home" },
+      { label: "All explorers", href: "/#explorers" },
     ],
   },
   {
-    title: "Company",
+    title: "Modo",
     items: [
-      { label: "About", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Contact", href: "mailto:hello@modo.link" },
+      { label: "Docs", href: "https://docs.modo.link/" },
+      { label: "Get started", href: "https://app.modo.link/" },
     ],
   },
-];
-
-export const SOCIAL_LINKS = [
-  { label: "GitHub", href: "#" },
-  { label: "X", href: "#" },
-  { label: "Telegram", href: "#" },
 ];
 
 export const SITE = {

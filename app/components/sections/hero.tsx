@@ -1,4 +1,3 @@
-import { Counter } from "@/app/components/counter";
 import { HeroVideo } from "@/app/components/hero-video";
 import { ArrowRight, ArrowTopRight } from "@/app/components/icons";
 
@@ -61,16 +60,6 @@ export function Hero() {
             <span className="lowercase">canton mainnet</span>
           </div>
 
-          <div
-            className="anim-fade-in hidden md:flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-fg-dim"
-            style={{ animationDelay: "100ms" }}
-          >
-            <span className="text-fg-dim/60">[</span>
-            <span>v.01</span>
-            <span className="text-fg-dim/60">·</span>
-            <span>prod</span>
-            <span className="text-fg-dim/60">]</span>
-          </div>
         </div>
 
         {/* Eyebrow */}
@@ -78,7 +67,7 @@ export function Hero() {
           className="anim-fade-up text-xs md:text-sm font-medium tracking-widest uppercase text-accent mb-8"
           style={{ animationDelay: "120ms" }}
         >
-          Enterprise infrastructure for the new financial stack
+          An intelligence layer for omni-chain building blocks
         </p>
 
         {/* H1 — weight-contrast accent */}
@@ -90,13 +79,13 @@ export function Hero() {
             animationDelay: "240ms",
           }}
         >
-          Ultimate Blockchain
+          The Intelligence Layer
           <br />
           <span
             className="font-extralight tracking-tight text-accent"
             style={{ letterSpacing: "-0.03em" }}
           >
-            Data Hub
+            of Canton
           </span>
         </h1>
 
@@ -115,10 +104,12 @@ export function Hero() {
           style={{ animationDelay: "520ms" }}
         >
           <a
-            href="#contact"
+            href="https://app.modo.link/"
+            target="_blank"
+            rel="noreferrer"
             className="group inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-accent text-ink-950 text-sm font-medium hover:bg-accent-hover transition-colors"
           >
-            Book a demo
+            Get Started
             <div className="inline-flex transition-transform duration-300 group-hover:translate-x-1">
               <ArrowRight />
             </div>
@@ -136,38 +127,49 @@ export function Hero() {
           </a>
         </div>
 
-        {/* Metrics */}
+        {/* Hot — editorial 7/5 split, no boxed cards */}
         <div
-          className="anim-fade-up mt-16 md:mt-24 border-t border-line pt-8"
+          className="anim-fade-up mt-16 md:mt-24 border-t border-line pt-10 md:pt-12"
           style={{ animationDelay: "700ms" }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-line">
-            <HeroMetric
+          {/* Section meta — same chip language as the top "Live" row */}
+          <div className="flex items-center gap-3 mb-10 md:mb-14 font-mono text-[10px] tracking-widest uppercase">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inset-0 rounded-full bg-accent anim-pulse" />
+            </span>
+            <span className="text-accent">Hot</span>
+            <span className="text-fg-dim/60">/</span>
+            <span className="text-fg-dim">2 items</span>
+            <span className="text-fg-dim/60">·</span>
+            <span className="text-fg-dim">Apr 2026</span>
+            <div className="flex-1 h-px bg-line ml-2" />
+          </div>
+
+          {/* 7/5 grid — news leads, offer is the sidebar */}
+          <div className="grid md:grid-cols-12 gap-y-12 md:gap-x-10 lg:gap-x-14">
+            <HotItem
+              span="md:col-span-7 md:border-r md:border-line md:pr-10 lg:pr-14"
               index="01"
-              value={<Counter to={2.4e9} format="compact" />}
-              label="events indexed"
+              kind="NEWS"
+              badge="HOT"
+              title="Silvana Joins HackCanton as Sponsor"
+              excerpt="Silvana joins HackCanton Season 1 as a sponsor of the AppsFactory program — a business-first build where teams ship MVPs on Canton, not prototypes. Hands-on guidance for agent design, on-chain workflows, and production-ready solutions."
+              cta="Read the story"
+              href="https://cc.modo.link/mainnet/news/1616"
+              external
+              titleClass="text-3xl md:text-4xl lg:text-[2.75rem]"
             />
-            <HeroMetric
+            <HotItem
+              span="md:col-span-5"
               index="02"
-              value={<Counter to={11} format="int" />}
-              label="networks live"
-            />
-            <HeroMetric
-              index="03"
-              value={
-                <>
-                  99.
-                  <Counter to={99} format="int" />
-                </>
-              }
-              suffix="%"
-              label="uptime SLA"
-            />
-            <HeroMetric
-              index="04"
-              value={<Counter to={42} format="int" />}
-              suffix="ms"
-              label="p99 latency"
+              kind="OFFER"
+              badge="NEW"
+              title="Promo codes live"
+              excerpt="Limited access for early users — unlock Modo's product suite: APIs for on-chain data, network monitoring and data-driven apps. HackCanton builders: redeem HackCC2026 in the Invite Code field, no plan to choose."
+              cta="Redeem code"
+              href="https://docs.modo.link/platform/promo-codes"
+              external
+              titleClass="text-2xl md:text-3xl lg:text-[2rem]"
             />
           </div>
         </div>
@@ -176,29 +178,86 @@ export function Hero() {
   );
 }
 
-function HeroMetric({
+function HotItem({
+  span,
   index,
-  value,
-  suffix,
-  label,
+  kind,
+  badge,
+  title,
+  excerpt,
+  cta,
+  href,
+  external,
+  titleClass,
 }: {
+  span: string;
   index: string;
-  value: React.ReactNode;
-  suffix?: string;
-  label: string;
+  kind: string;
+  badge: "HOT" | "NEW";
+  title: string;
+  excerpt: string;
+  cta: string;
+  href: string;
+  external?: boolean;
+  titleClass: string;
 }) {
+  const isMail = href.startsWith("mailto:");
+  const openNew = external && !isMail;
   return (
-    <div className="flex flex-col gap-3 md:px-6 first:md:pl-0 last:md:pr-0">
-      <span className="font-mono text-[10px] tracking-widest uppercase text-fg-dim">
-        {index} /
-      </span>
-      <span className="font-mono text-3xl md:text-4xl font-medium text-fg tabular leading-none">
-        {value}
-        {suffix && <span className="text-fg-muted">{suffix}</span>}
-      </span>
-      <span className="text-[11px] font-mono uppercase tracking-widest text-fg-dim">
-        {label}
-      </span>
-    </div>
+    <a
+      href={href}
+      target={openNew ? "_blank" : undefined}
+      rel={openNew ? "noreferrer" : undefined}
+      className={`group relative flex flex-col gap-5 ${span}`}
+    >
+      {/* Header — mono kind/idx · animated badge */}
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest">
+          <span className="text-accent">{index}</span>
+          <span className="text-fg-dim/60">/</span>
+          <span className="text-fg-dim">{kind}</span>
+        </div>
+        <span
+          className={`flex items-center gap-1.5 font-mono text-[10px] tracking-widest uppercase ${
+            badge === "HOT" ? "text-accent" : "text-fg-muted"
+          }`}
+        >
+          <span
+            className={`h-1.5 w-1.5 rounded-full ${
+              badge === "HOT" ? "bg-accent anim-pulse" : "bg-fg-dim"
+            }`}
+          />
+          {badge}
+        </span>
+      </div>
+
+      {/* Coral mark — echoes the hero's left-margin tick at top:24px */}
+      <span
+        aria-hidden
+        className="block h-px w-10 bg-accent transition-[width] duration-500 ease-out group-hover:w-24"
+      />
+
+      {/* Title — Whyte display, in the same typographic family as H1 */}
+      <h3
+        className={`font-display font-medium tracking-tightest text-fg leading-[1.04] transition-colors duration-300 group-hover:text-accent ${titleClass}`}
+      >
+        {title}
+      </h3>
+
+      {/* Excerpt */}
+      <p className="text-base md:text-[17px] text-fg-muted leading-relaxed flex-1 max-w-prose">
+        {excerpt}
+      </p>
+
+      {/* CTA — underline link, arrow translates */}
+      <div className="flex items-center gap-2 pt-2 text-sm font-medium text-fg group-hover:text-accent transition-colors">
+        <span className="border-b border-line-strong group-hover:border-accent transition-colors">
+          {cta}
+        </span>
+        <span className="inline-flex transition-transform duration-300 group-hover:translate-x-1">
+          {openNew || isMail ? <ArrowTopRight /> : <ArrowRight />}
+        </span>
+      </div>
+    </a>
   );
 }

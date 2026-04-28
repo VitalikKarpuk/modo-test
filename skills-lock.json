@@ -1,6 +1,16 @@
 {
   "version": 1,
   "skills": {
+    "content-creation": {
+      "source": "smithery.ai",
+      "sourceType": "well-known",
+      "computedHash": "012ed09d491de22ef3d2697e7f268597353711b8c17d72ce013c4a6e396df970"
+    },
+    "content-research-writer": {
+      "source": "smithery.ai",
+      "sourceType": "well-known",
+      "computedHash": "de7e9085e875a651f209c826d1a5e7dd5f2436fb38fe565ef76b54492c1a0c22"
+    },
     "frontend-design": {
       "source": "smithery.ai",
       "sourceType": "well-known",
