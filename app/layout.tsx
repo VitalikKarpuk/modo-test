@@ -15,8 +15,26 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+/**
+ * Resolve the canonical URL for OG/Twitter meta. Priority:
+ * 1. NEXT_PUBLIC_SITE_URL — explicit override (set on real production)
+ * 2. VERCEL_PROJECT_PRODUCTION_URL — Vercel project's production hostname
+ * 3. VERCEL_URL — any Vercel deployment (preview, branch, etc.)
+ * 4. SITE.url — local dev / fallback
+ *
+ * This ensures shared links from Vercel-deployed previews resolve OG images
+ * against the actual deployment host instead of a stale hardcoded domain.
+ */
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : SITE.url);
+
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE.url),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${SITE.name} — The ground-truth data layer for institutional finance`,
     template: `%s · ${SITE.name}`,
@@ -38,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${SITE.name} — The ground-truth data layer for institutional finance`,
     description: SITE.description,
-    url: SITE.url,
+    url: siteUrl,
     siteName: SITE.name,
     type: "website",
     locale: "en_US",
