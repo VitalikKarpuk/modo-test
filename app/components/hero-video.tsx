@@ -44,13 +44,10 @@ export function HeroVideo() {
         preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
       />
-      {/* darkening — confined to the video region */}
+      {/* darkening — confined to the video region; flips for light theme */}
       <div
         className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(2,3,9,0.72) 0%, rgba(2,3,9,0.5) 22%, rgba(2,3,9,0.62) 72%, rgba(2,3,9,0.96) 100%)",
-        }}
+        style={{ background: "var(--scrim-hero-video)" }}
       />
       {/* fade-to-bg at the bottom of the video region */}
       <div

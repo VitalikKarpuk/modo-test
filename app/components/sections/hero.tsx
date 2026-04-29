@@ -19,7 +19,7 @@ export function Hero() {
       />
 
       {/* ambient numeral — editorial depth */}
-      <div
+      {/* <div
         aria-hidden
         className="absolute right-0 -bottom-6 md:right-4 md:-bottom-16 font-mono font-thin leading-none tracking-tightest select-none pointer-events-none hidden md:block"
         style={{
@@ -29,7 +29,7 @@ export function Hero() {
         }}
       >
         01
-      </div>
+      </div> */}
 
       {/* left margin line with ticks */}
       <div

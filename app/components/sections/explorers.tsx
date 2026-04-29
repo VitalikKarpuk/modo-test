@@ -107,16 +107,13 @@ function FlagshipCard({ e }: { e: Explorer }) {
         />
         <div
           className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(115deg, rgba(2,3,9,0.94) 0%, rgba(2,3,9,0.86) 40%, rgba(2,3,9,0.62) 75%, rgba(2,3,9,0.42) 100%)",
-          }}
+          style={{ background: "var(--scrim-image)" }}
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 70% 50% at 0% 100%, rgba(244,134,86,0.10), transparent 60%)",
+              "radial-gradient(ellipse 70% 50% at 0% 100%, var(--accent-glow), transparent 60%)",
           }}
         />
       </div>
@@ -178,6 +175,20 @@ function PrivateCard({ e }: { e: Explorer }) {
       rel="noreferrer"
       className={`${CARD_BASE} p-6 md:p-7`}
     >
+      {/* <div aria-hidden className="absolute inset-0 pointer-events-none">
+        <Image
+          src="/private.png"
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "var(--scrim-image-105)" }}
+        />
+      </div> */}
+
       {/* dotted "scoped" pattern decoration on right edge */}
       <div
         aria-hidden

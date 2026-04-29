@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
+import { Logo } from "@/app/components/logo";
+import { ThemeToggle } from "@/app/components/theme-toggle";
 
 const ANCHORS = [
   { href: "/#products", label: "Products" },
@@ -13,19 +14,8 @@ export function Nav() {
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between gap-6">
         {/* Brand + ambient status */}
         <div className="flex items-center gap-4">
-          <Link
-            href="/"
-            aria-label="Modo"
-            className="flex items-center"
-          >
-            <Image
-              src="/logo.svg"
-              alt="Modo"
-              width={96}
-              height={17}
-              priority
-              className="h-5 w-auto"
-            />
+          <Link href="/" aria-label="Modo" className="flex items-center text-fg">
+            <Logo className="h-5 w-auto" />
           </Link>
           <span
             aria-hidden
@@ -64,6 +54,7 @@ export function Nav() {
 
         {/* CTA */}
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <a
             href="https://app.modo.link/"
             target="_blank"

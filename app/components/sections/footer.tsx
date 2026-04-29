@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Logo } from "@/app/components/logo";
 import { FOOTER_COLUMNS, SITE } from "@/app/lib/content";
 
 function IconX(props: React.SVGProps<SVGSVGElement>) {
@@ -54,13 +54,7 @@ export function Footer() {
 
         <div className="mt-10 pt-6 border-t border-line flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Image
-              src="/logo.svg"
-              alt="Modo"
-              width={96}
-              height={17}
-              className="h-5 w-auto"
-            />
+            <Logo className="h-5 w-auto text-fg" />
             <span aria-hidden className="h-4 w-px bg-line" />
             <a
               href="https://x.com/modoapps"

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "@/app/components/reveal";
 import { Section } from "@/app/components/section";
 import { SpotlightCard } from "@/app/components/spotlight-card";
@@ -305,6 +306,19 @@ function FeaturedLiveIndex() {
       radius={540}
       className="relative h-full flex flex-col gap-6 p-6 md:p-8 rounded-2xl border border-line bg-surface-2 hover:border-line-strong transition-colors overflow-hidden"
     >
+      {/* <div aria-hidden className="absolute inset-0 pointer-events-none">
+        <Image
+          src="/image.png"
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "var(--scrim-image)" }}
+        />
+      </div> */}
       <div
         aria-hidden
         className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-accent via-accent/40 to-transparent"

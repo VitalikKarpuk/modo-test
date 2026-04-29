@@ -75,7 +75,16 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        {/* Apply persisted theme before paint to avoid FOUC. Default = dark. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('modo-theme');if(t==='light'){document.documentElement.classList.add('light');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body
         className="min-h-full flex flex-col bg-bg text-fg font-sans"
         suppressHydrationWarning

@@ -161,8 +161,7 @@ function PrivateExplorerCard({ p }: { p: Product }) {
           style={{
             backdropFilter: "blur(3px)",
             WebkitBackdropFilter: "blur(3px)",
-            background:
-              "linear-gradient(90deg, var(--bg-surface, transparent) 0%, transparent 30%, rgba(2,3,9,0.65) 100%)",
+            background: "var(--scrim-private-blur)",
           }}
         />
       </div>
