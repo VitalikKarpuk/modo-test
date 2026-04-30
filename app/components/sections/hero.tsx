@@ -1,5 +1,6 @@
 import { HeroVideo } from "@/app/components/hero-video";
 import { ArrowRight, ArrowTopRight } from "@/app/components/icons";
+import { RotatingNetwork } from "@/app/components/rotating-network";
 
 export function Hero() {
   return (
@@ -85,7 +86,7 @@ export function Hero() {
             className="font-extralight tracking-tight text-accent"
             style={{ letterSpacing: "-0.03em" }}
           >
-            of Canton
+            of <RotatingNetwork />
           </span>
         </h1>
 
@@ -103,17 +104,6 @@ export function Hero() {
           className="anim-fade-up mt-12 flex flex-wrap items-center gap-4"
           style={{ animationDelay: "520ms" }}
         >
-          <a
-            href="https://app.modo.link/"
-            target="_blank"
-            rel="noreferrer"
-            className="group inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-accent text-ink-950 text-sm font-medium hover:bg-accent-hover transition-colors"
-          >
-            Get Started
-            <div className="inline-flex transition-transform duration-300 group-hover:translate-x-1">
-              <ArrowRight />
-            </div>
-          </a>
           <a
             href="https://docs.modo.link/"
             target="_blank"

@@ -31,17 +31,19 @@ export function Explorers() {
   return (
     <Section id="explorers" label="EXPLORERS" index="02">
       <Reveal>
-        <div className="grid md:grid-cols-2 gap-6 md:gap-10 max-w-5xl mb-16">
-          <h2 className="font-display font-medium text-4xl md:text-5xl tracking-tighter text-fg">
-            Eight explorers.
+        <div className="grid lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 max-w-5xl mb-16">
+          <h2 className="font-display font-medium text-4xl lg:text-5xl tracking-tighter text-fg">
+            <span className="whitespace-nowrap">
+              Explorer-as-a-
+              <em className="font-serif italic font-normal text-accent">
+                Service
+              </em>
+              .
+            </span>
             <br />
-            One{" "}
-            <em className="font-serif italic font-normal text-accent">
-              shared
-            </em>{" "}
-            stack.
+            One shared stack.
           </h2>
-          <p className="text-lg text-fg-muted leading-relaxed md:mt-4">
+          <p className="text-lg text-fg-muted leading-relaxed lg:mt-4 max-w-xl">
             Modo CC for Canton, plus chain-specific instances across Sui,
             Walrus, Ika, IOTA, Mina and Zeko — consistent UX, network-native
             capabilities.

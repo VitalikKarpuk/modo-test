@@ -1,8 +1,133 @@
 import { Reveal } from "@/app/components/reveal";
 import { Section } from "@/app/components/section";
 import { SpotlightCard } from "@/app/components/spotlight-card";
-import { ArrowTopRight, LockIcon } from "@/app/components/icons";
-import { PRODUCTS, type Product } from "@/app/lib/content";
+import {
+  IconIkaNet,
+  IconIotaNet,
+  IconMinaNet,
+  IconSilvanaNet,
+  IconSuiNet,
+  IconWalrusNet,
+  IconZekoNet,
+  LockIcon,
+} from "@/app/components/icons";
+import { PRODUCTS, type NetworkSlug, type Product } from "@/app/lib/content";
+
+function IconCantonLogo({
+  width = 16,
+  height = 16,
+  className,
+  style,
+}: React.SVGProps<SVGSVGElement>) {
+  return (
+    <span
+      aria-hidden
+      className={className}
+      style={{
+        display: "inline-block",
+        width,
+        height,
+        backgroundColor: "currentColor",
+        maskImage: "url(/cantonLogo.svg)",
+        maskRepeat: "no-repeat",
+        maskSize: "contain",
+        maskPosition: "center",
+        WebkitMaskImage: "url(/cantonLogo.svg)",
+        WebkitMaskRepeat: "no-repeat",
+        WebkitMaskSize: "contain",
+        WebkitMaskPosition: "center",
+        ...style,
+      }}
+    />
+  );
+}
+
+const NETWORK_ICONS: Record<NetworkSlug, (p: React.SVGProps<SVGSVGElement>) => React.ReactElement> = {
+  canton: IconCantonLogo,
+  sui: IconSuiNet,
+  walrus: IconWalrusNet,
+  silvana: IconSilvanaNet,
+  ika: IconIkaNet,
+  iota: IconIotaNet,
+  mina: IconMinaNet,
+  zeko: IconZekoNet,
+};
+
+const NETWORK_LABELS: Record<NetworkSlug, string> = {
+  canton: "Canton",
+  sui: "Sui",
+  walrus: "Walrus",
+  silvana: "Silvana",
+  ika: "Ika",
+  iota: "IOTA",
+  mina: "Mina",
+  zeko: "Zeko",
+};
+
+function NetworkRow({ networks }: { networks: NetworkSlug[] }) {
+  return (
+    <div className="relative flex items-center gap-3">
+      <span className="font-mono text-[10px] uppercase tracking-widest text-fg-dim shrink-0">
+        Available on
+      </span>
+      <div className="flex items-center gap-2.5 text-fg-muted">
+        {networks.map((slug) => {
+          const Icon = NETWORK_ICONS[slug];
+          return (
+            <span
+              key={slug}
+              title={NETWORK_LABELS[slug]}
+              aria-label={NETWORK_LABELS[slug]}
+              className="inline-flex h-4 w-4 items-center justify-center"
+            >
+              <Icon width={16} height={16} />
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+type ConstellationNode = {
+  slug: NetworkSlug;
+  top: string;
+  left: string;
+  size: number;
+  opacity: number;
+};
+
+function NetworkConstellation({
+  nodes,
+  className = "hidden lg:block",
+}: {
+  nodes: ReadonlyArray<ConstellationNode>;
+  className?: string;
+}) {
+  return (
+    <div
+      aria-hidden
+      className={`absolute inset-0 pointer-events-none text-fg-muted ${className}`}
+    >
+      {nodes.map((node) => {
+        const Icon = NETWORK_ICONS[node.slug];
+        return (
+          <span
+            key={node.slug}
+            className="absolute inline-flex"
+            style={{
+              top: node.top,
+              left: node.left,
+              opacity: node.opacity,
+            }}
+          >
+            <Icon width={node.size} height={node.size} />
+          </span>
+        );
+      })}
+    </div>
+  );
+}
 
 const CARD_BASE =
   "group relative h-full flex flex-col rounded-2xl bg-surface border border-line hover:border-line-strong transition-colors duration-300 overflow-hidden";
@@ -12,17 +137,19 @@ export function Products() {
   return (
     <Section id="products" label="PRODUCTS" index="01">
       <Reveal>
-        <div className="grid md:grid-cols-2 gap-6 md:gap-10 max-w-5xl mb-16">
-          <h2 className="font-display font-medium text-4xl md:text-5xl tracking-tighter text-fg">
-            Four products.
+        <div className="grid lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 max-w-5xl mb-16">
+          <h2 className="font-display font-medium text-4xl lg:text-5xl tracking-tighter text-fg">
+            <span className="whitespace-nowrap">
+              End-to-end{" "}
+              <em className="font-serif italic font-normal text-accent">
+                platform
+              </em>
+              .
+            </span>
             <br />
-            One{" "}
-            <em className="font-serif italic font-normal text-accent">
-              unified
-            </em>{" "}
-            data layer.
+            One unified data layer.
           </h2>
-          <p className="text-lg text-fg-muted leading-relaxed md:mt-4">
+          <p className="text-lg text-fg-muted leading-relaxed lg:mt-4 max-w-xl">
             Public and private explorers, the super-app, and the API
             — all on the same indexed ledger. From reading data to acting
             on it within the same environment.
@@ -55,19 +182,25 @@ export function Products() {
 const TICKER_ROWS = [
   { kind: "PARTY", id: "0x4f8a…3a2c", t: "09:42:11" },
   { kind: "TOKEN", id: "Canton Coin", t: "09:42:09" },
-  { kind: "VALIDATOR", id: "modo-vali-01", t: "09:42:07" },
+  { kind: "VALIDATOR", id: "vali-0x7c3a", t: "09:42:07" },
   { kind: "GOV", id: "VOTE-1217", t: "09:41:58" },
   { kind: "TX", id: "0x9b2d…74ef", t: "09:41:53" },
 ];
 
+const PUBLIC_CONSTELLATION: ReadonlyArray<ConstellationNode> = [
+  { slug: "canton", top: "6%", left: "54%", size: 64, opacity: 0.16 },
+  { slug: "silvana", top: "4%", left: "82%", size: 26, opacity: 0.14 },
+  { slug: "iota", top: "14%", left: "93%", size: 22, opacity: 0.15 },
+  { slug: "sui", top: "22%", left: "63%", size: 38, opacity: 0.13 },
+  { slug: "mina", top: "26%", left: "82%", size: 30, opacity: 0.13 },
+  { slug: "ika", top: "32%", left: "94%", size: 24, opacity: 0.11 },
+  { slug: "walrus", top: "36%", left: "70%", size: 34, opacity: 0.10 },
+  { slug: "zeko", top: "42%", left: "58%", size: 22, opacity: 0.09 },
+];
+
 function PublicExplorerCard({ p }: { p: Product }) {
   return (
-    <SpotlightCard
-      href={p.href}
-      target="_blank"
-      rel="noreferrer"
-      className={`${CARD_BASE} p-6 md:p-8`}
-    >
+    <SpotlightCard className={`${CARD_BASE} p-6 md:p-8`}>
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -77,15 +210,12 @@ function PublicExplorerCard({ p }: { p: Product }) {
         }}
       />
 
-      <div className="relative flex items-start justify-between">
-        <div className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-success anim-pulse" />
-          <span className="font-mono text-[11px] uppercase tracking-widest text-fg-dim">
-            {p.idx} · live
-          </span>
-        </div>
-        <span className="text-fg-dim group-hover:text-accent transition-colors">
-          <ArrowTopRight />
+      <NetworkConstellation nodes={PUBLIC_CONSTELLATION} />
+
+      <div className="relative flex items-center gap-2">
+        <span className="h-1.5 w-1.5 rounded-full bg-success anim-pulse" />
+        <span className="font-mono text-[11px] uppercase tracking-widest text-fg-dim">
+          {p.idx} · live
         </span>
       </div>
 
@@ -102,7 +232,7 @@ function PublicExplorerCard({ p }: { p: Product }) {
       <div className="relative mt-8 md:mt-10 flex-1 flex flex-col gap-0">
         <div className="flex items-baseline justify-between font-mono text-[10px] uppercase tracking-widest text-fg-dim border-b border-line pb-2 mb-1">
           <span>Last entries</span>
-          <span>cc.modo.link/mainnet</span>
+          <span>ledger · mainnet</span>
         </div>
         {TICKER_ROWS.map((row, i) => (
           <div
@@ -119,14 +249,9 @@ function PublicExplorerCard({ p }: { p: Product }) {
         ))}
       </div>
 
-      <ul className="relative mt-6 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-fg-muted pt-4 border-t border-line">
-        {p.bullets.map((b) => (
-          <li key={b} className="flex items-center gap-2">
-            <span className="h-px w-3 bg-accent" />
-            {b}
-          </li>
-        ))}
-      </ul>
+      <div className="relative mt-6 pt-4 border-t border-line">
+        <NetworkRow networks={p.networks} />
+      </div>
     </SpotlightCard>
   );
 }
@@ -137,12 +262,7 @@ function PublicExplorerCard({ p }: { p: Product }) {
    ============================================================ */
 function PrivateExplorerCard({ p }: { p: Product }) {
   return (
-    <SpotlightCard
-      href={p.href}
-      target="_blank"
-      rel="noreferrer"
-      className={`${CARD_BASE} p-6 md:p-7`}
-    >
+    <SpotlightCard className={`${CARD_BASE} p-6 md:p-7`}>
       {/* Blurred private-data backdrop on the right */}
       <div
         aria-hidden
@@ -164,20 +284,22 @@ function PrivateExplorerCard({ p }: { p: Product }) {
             background: "var(--scrim-private-blur)",
           }}
         />
+        {/* Canton mark watermark — single supported network */}
+        <span
+          className="absolute top-1/2 right-10 -translate-y-1/2 hidden md:inline-flex text-fg-muted"
+          style={{ opacity: 0.12 }}
+        >
+          <IconCantonLogo width={160} height={160} />
+        </span>
       </div>
 
-      <div className="relative">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-warning">
-              <LockIcon />
-            </span>
-            <span className="font-mono text-[11px] uppercase tracking-widest text-warning">
-              {p.idx} · private
-            </span>
-          </div>
-          <span className="text-fg-dim group-hover:text-accent transition-colors">
-            <ArrowTopRight />
+      <div className="relative flex h-full flex-col">
+        <div className="flex items-center gap-2">
+          <span className="text-warning">
+            <LockIcon />
+          </span>
+          <span className="font-mono text-[11px] uppercase tracking-widest text-warning">
+            {p.idx} · private
           </span>
         </div>
 
@@ -188,14 +310,9 @@ function PrivateExplorerCard({ p }: { p: Product }) {
           {p.tagline}
         </p>
 
-        <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10.5px] uppercase tracking-widest text-fg-dim">
-          {p.bullets.map((b) => (
-            <li key={b} className="flex items-center gap-2">
-              <span className="text-accent">·</span>
-              {b}
-            </li>
-          ))}
-        </ul>
+        <div className="mt-auto pt-5">
+          <NetworkRow networks={p.networks} />
+        </div>
       </div>
     </SpotlightCard>
   );
@@ -205,37 +322,36 @@ function PrivateExplorerCard({ p }: { p: Product }) {
    3. Super-App — SMALL (1x1)
    Mini grid of tiles representing connected products
    ============================================================ */
+const SUPERAPP_CONSTELLATION: ReadonlyArray<ConstellationNode> = [
+  { slug: "canton", top: "6%", left: "62%", size: 38, opacity: 0.18 },
+  { slug: "iota", top: "8%", left: "90%", size: 14, opacity: 0.16 },
+  { slug: "sui", top: "20%", left: "82%", size: 22, opacity: 0.16 },
+  { slug: "walrus", top: "28%", left: "68%", size: 20, opacity: 0.13 },
+  { slug: "mina", top: "30%", left: "92%", size: 16, opacity: 0.14 },
+];
+
 function SuperAppCard({ p }: { p: Product }) {
   return (
-    <SpotlightCard
-      href={p.href}
-      target="_blank"
-      rel="noreferrer"
-      className={`${CARD_BASE} p-6`}
-    >
-      <div className="flex items-start justify-between">
-        {/* 3x3 mini grid — one cell coral as "you are here" */}
-        <div className="grid grid-cols-3 gap-1">
-          {Array.from({ length: 9 }).map((_, i) => {
-            const accent = i === 4;
-            const dim = i === 1 || i === 3 || i === 5 || i === 7;
-            return (
-              <span
-                key={i}
-                className={`h-2.5 w-2.5 rounded-[3px] ${
-                  accent
-                    ? "bg-accent"
-                    : dim
-                      ? "bg-line-strong"
-                      : "bg-line"
-                }`}
-              />
-            );
-          })}
-        </div>
-        <span className="text-fg-dim group-hover:text-accent transition-colors">
-          <ArrowTopRight />
-        </span>
+    <SpotlightCard className={`${CARD_BASE} p-6`}>
+      <NetworkConstellation nodes={SUPERAPP_CONSTELLATION} />
+      {/* 3x3 mini grid — one cell coral as "you are here" */}
+      <div className="relative grid grid-cols-3 gap-1 w-fit">
+        {Array.from({ length: 9 }).map((_, i) => {
+          const accent = i === 4;
+          const dim = i === 1 || i === 3 || i === 5 || i === 7;
+          return (
+            <span
+              key={i}
+              className={`h-2.5 w-2.5 rounded-[3px] ${
+                accent
+                  ? "bg-accent"
+                  : dim
+                    ? "bg-line-strong"
+                    : "bg-line"
+              }`}
+            />
+          );
+        })}
       </div>
 
       <span className="font-mono text-[11px] uppercase tracking-widest text-fg-dim mt-8">
@@ -248,10 +364,8 @@ function SuperAppCard({ p }: { p: Product }) {
         {p.tagline}
       </p>
 
-      <div className="mt-auto pt-4 border-t border-line/60 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-widest text-fg-dim">
-        {p.bullets.map((b) => (
-          <span key={b}>{b}</span>
-        ))}
+      <div className="mt-auto pt-4 border-t border-line/60">
+        <NetworkRow networks={p.networks} />
       </div>
     </SpotlightCard>
   );
@@ -261,22 +375,21 @@ function SuperAppCard({ p }: { p: Product }) {
    4. Modo API — SMALL (1x1)
    Code snippet as the visual centerpiece
    ============================================================ */
+const API_CONSTELLATION: ReadonlyArray<ConstellationNode> = [
+  { slug: "canton", top: "6%", left: "60%", size: 36, opacity: 0.18 },
+  { slug: "iota", top: "10%", left: "92%", size: 14, opacity: 0.16 },
+  { slug: "sui", top: "20%", left: "80%", size: 22, opacity: 0.15 },
+  { slug: "walrus", top: "26%", left: "94%", size: 16, opacity: 0.13 },
+  { slug: "mina", top: "24%", left: "66%", size: 18, opacity: 0.14 },
+];
+
 function ModoApiCard({ p }: { p: Product }) {
   return (
-    <SpotlightCard
-      href={p.href}
-      target="_blank"
-      rel="noreferrer"
-      className={`${CARD_BASE} p-6`}
-    >
-      <div className="flex items-start justify-between">
-        <span className="font-mono text-[11px] uppercase tracking-widest text-accent">
-          {p.idx} · api
-        </span>
-        <span className="text-fg-dim group-hover:text-accent transition-colors">
-          <ArrowTopRight />
-        </span>
-      </div>
+    <SpotlightCard className={`${CARD_BASE} p-6`}>
+      <NetworkConstellation nodes={API_CONSTELLATION} />
+      <span className="relative font-mono text-[11px] uppercase tracking-widest text-accent">
+        {p.idx} · api
+      </span>
 
       <h3 className="font-display font-medium tracking-tight text-2xl mt-8">
         {p.title}
@@ -285,7 +398,7 @@ function ModoApiCard({ p }: { p: Product }) {
         {p.tagline}
       </p>
 
-      <pre className="mt-auto rounded-md border border-line bg-bg/60 p-3 font-mono text-[11px] leading-relaxed tabular text-fg-muted overflow-hidden">
+      <pre className="mt-6 rounded-md border border-line bg-bg/60 p-3 font-mono text-[11px] leading-relaxed tabular text-fg-muted overflow-hidden">
         <span className="text-accent">GET</span> /v1/parties/get-party-details
         {"\n"}
         <span className="text-fg-dim">  ?party_id=</span>
@@ -294,6 +407,10 @@ function ModoApiCard({ p }: { p: Product }) {
         <span className="text-success">→ 200 OK</span>{" "}
         <span className="text-fg-dim">· 42 ms</span>
       </pre>
+
+      <div className="mt-auto pt-4">
+        <NetworkRow networks={p.networks} />
+      </div>
     </SpotlightCard>
   );
 }

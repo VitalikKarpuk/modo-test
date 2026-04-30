@@ -37,27 +37,53 @@ export type ProductIconKey =
   | "grid"
   | "ports";
 
+export type NetworkSlug =
+  | "canton"
+  | "sui"
+  | "walrus"
+  | "silvana"
+  | "ika"
+  | "iota"
+  | "mina"
+  | "zeko";
+
 export type Product = {
   idx: string;
   title: string;
   tagline: string;
-  bullets: string[];
   href: string;
+  networks: NetworkSlug[];
   iconKey: ProductIconKey;
   featured?: boolean;
 };
+
+const PUBLIC_EXPLORER_NETS: NetworkSlug[] = [
+  "canton",
+  "sui",
+  "walrus",
+  "silvana",
+  "ika",
+  "iota",
+  "mina",
+  "zeko",
+];
+
+const SUPERAPP_AND_API_NETS: NetworkSlug[] = [
+  "canton",
+  "sui",
+  "walrus",
+  "iota",
+  "mina",
+];
 
 export const PRODUCTS: Product[] = [
   {
     idx: "01",
     title: "Public Explorer",
-    tagline: "Stay on top of on-chain activity in real time.",
-    bullets: [
-      "Parties, tokens, validators, governance",
-      "Unified search across the network",
-      "Free and open to anyone",
-    ],
+    tagline:
+      "Discover on-chain activity, ecosystem, and public data in one place.",
     href: "https://cc.modo.link/mainnet/home",
+    networks: PUBLIC_EXPLORER_NETS,
     iconKey: "overlap",
     featured: true,
   },
@@ -65,37 +91,27 @@ export const PRODUCTS: Product[] = [
     idx: "02",
     title: "Private Explorer",
     tagline:
-      "A private workspace to organize your activity and access richer data.",
-    bullets: [
-      "Smart labeling and custom filters",
-      "Multi-party, multi-account workspace",
-      "Apps & rewards tracking",
-    ],
+      "Monitor your business activity on Canton through a personalized workspace.",
     href: "https://private-demo.modo.link/",
+    networks: ["canton"],
     iconKey: "vault",
   },
   {
     idx: "03",
     title: "Super-App",
-    tagline: "One unified interface for every Modo product.",
-    bullets: [
-      "Cross-product navigation",
-      "Subscription management",
-      "Developer dashboard",
-    ],
+    tagline:
+      "Access a unified interface for Modo products and carry out daily operations.",
     href: "https://app.modo.link/",
+    networks: SUPERAPP_AND_API_NETS,
     iconKey: "grid",
   },
   {
     idx: "04",
-    title: "Modo API",
-    tagline: "Structured access to blockchain data — and to action.",
-    bullets: [
-      "Historic · Transfer · Portfolio · Agentic",
-      "gRPC + REST endpoints",
-      "Ed25519-signed agent calls",
-    ],
+    title: "API",
+    tagline:
+      "Build on a single API layer designed for production-ready apps.",
     href: "https://docs.modo.link/",
+    networks: SUPERAPP_AND_API_NETS,
     iconKey: "ports",
   },
 ];
@@ -199,7 +215,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { label: "Public Explorer", href: "https://cc.modo.link/mainnet/home" },
       { label: "Private Explorer", href: "https://private-demo.modo.link/" },
       { label: "Super-App", href: "https://app.modo.link/" },
-      { label: "Modo API", href: "https://docs.modo.link/" },
+      { label: "API", href: "https://docs.modo.link/" },
     ],
   },
   {
@@ -216,7 +232,6 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     title: "Modo",
     items: [
       { label: "Docs", href: "https://docs.modo.link/" },
-      { label: "Get started", href: "https://app.modo.link/" },
     ],
   },
 ];

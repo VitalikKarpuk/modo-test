@@ -3,7 +3,7 @@ import { Hero } from "@/app/components/sections/hero";
 import { Partners } from "@/app/components/sections/partners";
 import { Products } from "@/app/components/sections/products";
 import { Explorers } from "@/app/components/sections/explorers";
-import { AgenticStack } from "@/app/components/sections/agentic-stack";
+import { ApiStack } from "@/app/components/sections/api-stack";
 import { Footer } from "@/app/components/sections/footer";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
       <Partners />
       <Products />
       <Explorers />
-      <AgenticStack />
+      <ApiStack />
       <Footer />
     </>
   );

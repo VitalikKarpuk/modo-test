@@ -166,6 +166,43 @@ export const PRODUCT_ICONS: Record<ProductIconKey, (p: IconProps) => React.React
 
 /* -------- Network marks (chain glyphs, mono via currentColor) -------- */
 
+export function IconSilvanaNet(props: IconProps) {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 35 33"
+      fill="currentColor"
+      aria-hidden
+      {...props}
+    >
+      <path d="M12.8402 20.7522C11.6426 21.8661 10.0325 22.4873 8.42707 22.1748C6.9834 21.8938 5.57803 21.4458 4.22272 20.8334C3.6423 20.571 3.06773 20.2764 2.5156 19.9565C0.264463 18.6538 0.257931 15.604 2.09691 13.7647L11.4947 4.36559C11.9746 3.88562 12.6255 3.61597 13.3043 3.61597H28.8559C29.6158 3.61597 29.9964 4.53474 29.459 5.07209C26.597 7.93414 16.9465 16.9326 12.8402 20.7522Z" />
+      <path d="M4.53204 30.8188L21.1427 15.1719C22.3448 14.0395 23.9706 13.4045 25.5911 13.7224C27.0255 14.0037 28.422 14.4499 29.769 15.0585C30.3494 15.3209 30.924 15.6155 31.4761 15.9355C33.7272 17.2382 33.7336 20.2879 31.8945 22.127L22.496 31.5255C22.0161 32.0054 21.3652 32.275 20.6866 32.275H5.13512C4.37516 32.275 3.99461 31.3562 4.53204 30.8188Z" />
+    </svg>
+  );
+}
+
+export function IconCantonNet(props: IconProps) {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden
+      {...props}
+    >
+      <path
+        d="M18.5 6.5A8 8 0 1 0 18.5 17.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+
 export function IconSuiNet(props: IconProps) {
   return (
     <svg
@@ -241,7 +278,7 @@ export function IconMinaNet(props: IconProps) {
     <svg
       width="20"
       height="20"
-      viewBox="0 0 16 16"
+      viewBox="3.5 3.8 8.6 8.4"
       fill="currentColor"
       aria-hidden
       {...props}
@@ -384,6 +421,102 @@ export function IconRecurring(props: IconProps) {
     >
       <path
         d="M20 12a8 8 0 0 1-13.5 5.8M4 12A8 8 0 0 1 17.5 6.2M4 4v4h4M20 20v-4h-4"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconPortfolio(props: IconProps) {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden
+      {...props}
+    >
+      <rect x="4" y="6" width="16" height="2.6" rx="0.6" fill="currentColor" />
+      <rect
+        x="4"
+        y="10.7"
+        width="12"
+        height="2.6"
+        rx="0.6"
+        fill="currentColor"
+        opacity="0.7"
+      />
+      <rect
+        x="4"
+        y="15.4"
+        width="8"
+        height="2.6"
+        rx="0.6"
+        fill="currentColor"
+        opacity="0.4"
+      />
+    </svg>
+  );
+}
+
+export function IconDashboard(props: IconProps) {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden
+      {...props}
+    >
+      <rect
+        x="3"
+        y="3"
+        width="8"
+        height="8"
+        rx="1.5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <rect x="13" y="3" width="8" height="8" rx="1.5" fill="currentColor" />
+      <rect
+        x="3"
+        y="13"
+        width="8"
+        height="8"
+        rx="1.5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <rect
+        x="13"
+        y="13"
+        width="8"
+        height="8"
+        rx="1.5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+    </svg>
+  );
+}
+
+export function IconRealtime(props: IconProps) {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden
+      {...props}
+    >
+      <path
+        d="M2 12h3l2-3 3 7 3-10 3 10 2-4h4"
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"
